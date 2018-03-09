@@ -1,115 +1,138 @@
-'use strict'
-
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
-var rename = require('gulp-rename');
-var del = require('del');
-var runSequence = require('run-sequence');
-var replace = require('gulp-replace');
-var injectPartials = require('gulp-inject-partials');
-var inject = require('gulp-inject');
-var sourcemaps = require('gulp-sourcemaps');
+var header = require('gulp-header');
+var cleanCSS = require('gulp-clean-css');
+var rename = require("gulp-rename");
+var uglify = require('gulp-uglify');
+var pkg = require('./package.json');
+var browserSync = require('browser-sync').create();
 
-gulp.paths = {
-    dist: 'dist',
-};
+// Set the banner content
+var banner = ['/*!\n',
+  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+  ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' */\n',
+  ''
+].join('');
 
-var paths = gulp.paths;
+// Copy third party libraries from /node_modules into /vendor
+gulp.task('vendor', function() {
 
+  // Bootstrap
+  gulp.src([
+      './node_modules/bootstrap/dist/**/*',
+      '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
+      '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
+    ])
+    .pipe(gulp.dest('./vendor/bootstrap'))
 
+  // Devicons
+  gulp.src([
+      './node_modules/devicons/**/*',
+      '!./node_modules/devicons/*.json',
+      '!./node_modules/devicons/*.md',
+      '!./node_modules/devicons/!PNG',
+      '!./node_modules/devicons/!PNG/**/*',
+      '!./node_modules/devicons/!SVG',
+      '!./node_modules/devicons/!SVG/**/*'
+    ])
+    .pipe(gulp.dest('./vendor/devicons'))
 
-// Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
+  // Font Awesome
+  gulp.src([
+      './node_modules/font-awesome/**/*',
+      '!./node_modules/font-awesome/{less,less/*}',
+      '!./node_modules/font-awesome/{scss,scss/*}',
+      '!./node_modules/font-awesome/.*',
+      '!./node_modules/font-awesome/*.{txt,json,md}'
+    ])
+    .pipe(gulp.dest('./vendor/font-awesome'))
 
-    browserSync.init({
-        port: 3000,
-        server: "./",
-        ghostMode: false,
-        notify: false
-    });
+  // jQuery
+  gulp.src([
+      './node_modules/jquery/dist/*',
+      '!./node_modules/jquery/dist/core.js'
+    ])
+    .pipe(gulp.dest('./vendor/jquery'))
 
-    gulp.watch('scss/**/*.scss', ['sass']);
-    gulp.watch('**/*.html').on('change', browserSync.reload);
-    gulp.watch('js/**/*.js').on('change', browserSync.reload);
+  // jQuery Easing
+  gulp.src([
+      './node_modules/jquery.easing/*.js'
+    ])
+    .pipe(gulp.dest('./vendor/jquery-easing'))
+
+  // Simple Line Icons
+  gulp.src([
+      './node_modules/simple-line-icons/fonts/**',
+    ])
+    .pipe(gulp.dest('./vendor/simple-line-icons/fonts'))
+
+  gulp.src([
+      './node_modules/simple-line-icons/css/**',
+    ])
+    .pipe(gulp.dest('./vendor/simple-line-icons/css'))
 
 });
 
-
-
-// Static Server without watching scss files
-gulp.task('serve:lite', function() {
-
-    browserSync.init({
-        server: "./",
-        ghostMode: false,
-        notify: false
-    });
-
-    gulp.watch('**/*.css').on('change', browserSync.reload);
-    gulp.watch('**/*.html').on('change', browserSync.reload);
-    gulp.watch('js/**/*.js').on('change', browserSync.reload);
-
+// Compile SCSS
+gulp.task('css:compile', function() {
+  return gulp.src('./scss/**/*.scss')
+    .pipe(sass.sync({
+      outputStyle: 'expanded'
+    }).on('error', sass.logError))
+    .pipe(gulp.dest('./css'))
 });
 
-
-
-gulp.task('sass', function () {
-    return gulp.src('./scss/style.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('./css'))
-        .pipe(browserSync.stream());
+// Minify CSS
+gulp.task('css:minify', ['css:compile'], function() {
+  return gulp.src([
+      './css/*.css',
+      '!./css/*.min.css'
+    ])
+    .pipe(cleanCSS())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./css'))
+    .pipe(browserSync.stream());
 });
 
+// CSS
+gulp.task('css', ['css:compile', 'css:minify']);
 
-
-gulp.task('sass:watch', function () {
-    gulp.watch('./scss/**/*.scss');
+// Minify JavaScript
+gulp.task('js:minify', function() {
+  return gulp.src([
+      './js/*.js',
+      '!./js/*.min.js'
+    ])
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./js'))
+    .pipe(browserSync.stream());
 });
 
+// JS
+gulp.task('js', ['js:minify']);
 
-/*sequence for injecting partials and replacing paths*/
-gulp.task('inject', function() {
-  runSequence('injectPartial' , 'injectAssets' , 'replacePath');
+// Default task
+gulp.task('default', ['css', 'js', 'vendor']);
+
+// Configure the browserSync task
+gulp.task('browserSync', function() {
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
 });
 
-
-
-/* inject partials like sidebar and navbar */
-gulp.task('injectPartial', function () {
-  return gulp.src("./**/*.html", { base: "./" })
-    .pipe(injectPartials())
-    .pipe(gulp.dest("."));
+// Dev task
+gulp.task('dev', ['css', 'js', 'browserSync'], function() {
+  gulp.watch('./scss/*.scss', ['css']);
+  gulp.watch('./js/*.js', ['js']);
+  gulp.watch('./*.html', browserSync.reload);
 });
-
-
-
-/* inject Js and CCS assets into HTML */
-gulp.task('injectAssets', function () {
-  return gulp.src('./**/*.html')
-    .pipe(inject(gulp.src(['./node_modules/mdi/css/materialdesignicons.min.css', './node_modules/simple-line-icons/css/simple-line-icons.css' , './node_modules/perfect-scrollbar/css/perfect-scrollbar.css' , './node_modules/jquery/dist/jquery.min.js', './node_modules/popper.js/dist/umd/popper.min.js' , './node_modules/bootstrap/dist/js/bootstrap.min.js' , './node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js'], {read: false}), {name: 'plugins', relative: true}))
-    .pipe(inject(gulp.src(['./css/*.css' , './js/off-canvas.js' , './js/misc.js'], {read: false}), {relative: true}))
-    .pipe(gulp.dest('.'));
-});
-
-
-
-/*replace image path and linking after injection*/
-gulp.task('replacePath', function(){
-  gulp.src('pages/*/*.html', { base: "./" })
-    .pipe(replace('src="images/', 'src="../../images/'))
-    .pipe(replace('href="pages/', 'href="../../pages/'))
-    .pipe(replace('href="index.html"', 'href="../../index.html"'))
-    .pipe(gulp.dest('.'));
-  gulp.src('pages/*.html', { base: "./" })
-    .pipe(replace('src="images/', 'src="../images/'))
-    .pipe(replace('"pages/', '"../pages/'))
-    .pipe(replace('href="index.html"', 'href="../index.html"'))
-    .pipe(gulp.dest('.'));
-});
-
-
-
-gulp.task('default', ['serve']);
