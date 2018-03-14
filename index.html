@@ -267,42 +267,99 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="materials">
         <div class="my-auto">
           <h2 class="mb-5">Learning Materials</h2>
-
-        <div class="subheading mb-3">Learning Materials</div>
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Machine learning</a>
-            <ul>
-              <li><a href="http://speech.ee.ntu.edu.tw/~tlkagk/talk.html" arget="_blank">Hung-Yi Lee</a></li>
-              <li><a href="https://www.youtube.com/watch?v=nQvpFSMPhr0&list=PLXVfgk9fNX2I7tB6oIINGBmW50rrmFTqf" target="_blank">Machine Learning Foundations - Prof. Hsuan-Tien Lin</a></li>
-              <li><a href="https://www.youtube.com/watch?v=A-GxGCCAIrg&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2" target="_blank">Machine Learning Techniques - Prof. Hsuan-Tien Lin</a></li>                            
-            </ul>
-            <a href="#" class="list-group-item list-group-item-success">Web Crawler</a>
-            <ul>
-              <li><a href="http://www.largitdata.com/">LargitData</a></li>     
-            </ul>
-            <a href="#" class="list-group-item list-group-item-secondary">Django</a>
-            <ul>
-              <li><a href="https://docs.djangoproject.com/en/2.0/intro/">Django official</a></li>
-              <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django">Django mozilla toturial</a></li>     
-            </ul>            
-            <a href="#" class="list-group-item list-group-item-info">Front-end</a>
-            <ul>
-              <li><a href="https://www.w3schools.com/default.asp">w3School</a></li>
-              <li><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTML">mozilla HTML</a></li>     
-            </ul>            
-            <a href="#" class="list-group-item list-group-item-warning">Back-end</a>
-            <ul>
-              <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04">How To Set Up Django with Postgres, Nginx, and Gunicorn on Ubuntu 16.04</a></li>     
-            </ul>            
-            <a href="#" class="list-group-item list-group-item-danger">Python basic</a>
-            <ul>
-              <li><a href="https://docs.python.org/3/tutorial/">python official</a></li>     
-            </ul>
-            <a href="#" class="list-group-item list-group-item-primary">CS bases</a>
-            <ul>
-              <li><a href="https://cs50.harvard.edu/weeks" arget="_blank">Harvard CS bases</a></li>                            
-            </ul>
-          </div>
+          <div class="subheading mb-3">Learning Materials</div>
+          <!-- Start BS4 collapse -->
+          <div id="accordion">
+            <div id="ML" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                  Machine Learning
+                </a>
+              </div>
+              <div id="collapseOne" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="http://speech.ee.ntu.edu.tw/~tlkagk/talk.html" arget="_blank">Hung-Yi Lee</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=nQvpFSMPhr0&list=PLXVfgk9fNX2I7tB6oIINGBmW50rrmFTqf" target="_blank">Machine Learning Foundations - Prof. Hsuan-Tien Lin</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=A-GxGCCAIrg&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2" target="_blank">Machine Learning Techniques - Prof. Hsuan-Tien Lin</a></li>                            
+                  </ul>          
+                </div>
+              </div>
+            </div>
+            <div id="BE" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                Back-end development
+              </a>
+              </div>
+              <div id="collapseTwo" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="https://docs.djangoproject.com/en/2.0/intro/">Django official</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django">Django mozilla toturial</a></li>
+                    <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04">How To Set Up Django with Postgres, Nginx, and Gunicorn on Ubuntu 16.04</a></li>  
+                  </ul>  
+                </div>
+              </div>
+            </div>
+            <div id="FE" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  Front-end development
+                </a>
+              </div>
+              <div id="collapseThree" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="https://www.w3schools.com/default.asp">W3School</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTML">mozilla HTML</a></li>     
+                  </ul>           
+                </div>
+              </div>
+            </div>
+            <div id="Web" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                  Web Crawler
+                </a>
+              </div>
+              <div id="collapseFour" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="http://www.largitdata.com/">LargitData</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="Eng" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                  English Learning
+                </a>
+              </div>
+              <div id="collapseFive" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="https://www.allearsenglish.com/episodes/" arget="_blank">All ears English</a></li>                            
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="CS" class="card">
+              <div class="card-header">
+                <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                  Computer Science
+                </a>
+              </div>
+              <div id="collapseSix" class="collapse">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="https://cs50.harvard.edu/weeks" arget="_blank">Harvard CS bases</a></li>                        
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <!-- End BS4 collapse -->
         </div>
       </section>
     </div>
