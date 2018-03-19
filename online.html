@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Kenneth Lee</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,38 +10,58 @@
 </head>
 <body>
 
-<div class="container">
-  <ul class="list-group">
+  <div class="page-header" align="center">
+    <h1>Online materials</h1>  
+    <p>The following subjects provide the worthy discussed materials that I have learned and examined</p>    
+  </div>
 
-  <br>
-  <ul class="list-group">Online courses
-    <li><a href="https://see.stanford.edu/course/cs229" arget="_blank">cs229</a></li>
-    <li><a href="https://developers.google.com/machine-learning/crash-course/ml-intro?authuser=2" arget="_blank">google ML</a></li>
-    <li><a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PLC1qU-LWwrF64f4QKQT-Vg5Wr4qEE1Zxk" arget="_blank">cs231</a></li>
-    <li><a href="https://cs50.harvard.edu/" arget="_blank">cs50</a></li>
-    <li><a href="https://www.youtube.com/watch?v=wfKv2qG8d_w" arget="_blank">How to Focus Intensely</a></li>
-    <li><a href="https://www.youtube.com/watch?v=e_xOfkg5FUg" arget="_blank">PRODUCTIVITY HACK #1: DEEP WORK</a></li>
-  </ul> 
-  <hr>
-  <ul class="list-group">2018/03/19
-    <li><a href="https://www.youtube.com/watch?v=YgE9NcI4FTo" arget="_blank">The best way to help is often just to listen</a></li>
-    <li><a href="https://www.youtube.com/watch?v=Zsc8G0NnMTs" arget="_blank">How long will human impacts last?</a></li>
-    <li><a href="https://www.youtube.com/watch?v=phPuSZUpIlw" arget="_blank">ted 為什麼我們的智商測驗分數高過祖先</a></li>
-  </ul> 
-  <ul class="list-group">2018/03/26
-    <li>
-      <a href="https://www.ted.com/talks/uri_hass on_this_is_your_brain_on_communication#t-291607" arget="_blank">This is your brain on communication</a></li>
-    </li>
-  </ul> 
+  <div class="container">
+    <div class="btn-group btn-group-justified">
+      <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#webscrapy">Web Scrapig</a>
+      <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#discussion">English discussion issues</a>
+      <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#courses">Online courses</a>
+    </div>
 
-  <ul class="list-group">Web Scrapig
-      <li><a href="https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071" arget="_blank">Web Scraping Tutorial with Python: Tips and Tricks</a></li>
-      <li><a href="https://medium.com/@mr_rigden/using-tor-with-the-python-request-library-79015b2606cb" arget="_blank">Using Tor with the Python Requests Library</a></li>
-      <li><a href="https://codelike.pro/create-a-crawler-with-rotating-ip-proxy-in-python/" arget="_blank">Create a rotating proxy crawler in Python 3</a></li>
-      <li><a href="https://jarroba.com/anonymous-scraping-by-tor-network/" arget="_blank">Anonymous scraping by TOR networ</a></li>
-  </ul> 
+    <div id="webscrapy" class="collapse" >
+      <br>
+      <ul class="list-group" id="webscrapy">
+          <li><a href="https://hackernoon.com/web-scraping-tutorial-with-python-tips-and-tricks-db070e70e071" arget="_blank">Web Scraping Tutorial with Python: Tips and Tricks</a></li>
+          <li><a href="https://medium.com/@mr_rigden/using-tor-with-the-python-request-library-79015b2606cb" arget="_blank">Using Tor with the Python Requests Library</a></li>
+          <li><a href="https://codelike.pro/create-a-crawler-with-rotating-ip-proxy-in-python/" arget="_blank">Create a rotating proxy crawler in Python 3</a></li>
+          <li><a href="https://jarroba.com/anonymous-scraping-by-tor-network/" arget="_blank">Anonymous scraping by TOR networ</a></li>
+      </ul>
+      <hr>
+    </div>
 
-</div>
+    <div id="discussion" class="collapse">
+      <br>
+      <ul class="list-group">2018/03/19
+        <li><a href="https://www.youtube.com/watch?v=YgE9NcI4FTo" arget="_blank">The best way to help is often just to listen</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Zsc8G0NnMTs" arget="_blank">How long will human impacts last?</a></li>
+        <li><a href="https://www.youtube.com/watch?v=phPuSZUpIlw" arget="_blank">ted 為什麼我們的智商測驗分數高過祖先</a></li>
+      </ul> 
+      <ul class="list-group">2018/03/26
+        <li>
+          <a href="https://www.ted.com/talks/uri_hass on_this_is_your_brain_on_communication#t-291607" arget="_blank">This is your brain on communication</a></li>
+        </li>
+      </ul> 
+      <hr>
+    </div>
+
+    <div id="courses" class="collapse">
+      <br>
+      <ul class="list-group">Online courses
+        <li><a href="https://see.stanford.edu/course/cs229" arget="_blank">cs229</a></li>
+        <li><a href="https://developers.google.com/machine-learning/crash-course/ml-intro?authuser=2" arget="_blank">google ML</a></li>
+        <li><a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PLC1qU-LWwrF64f4QKQT-Vg5Wr4qEE1Zxk" arget="_blank">cs231</a></li>
+        <li><a href="https://cs50.harvard.edu/" arget="_blank">cs50</a></li>
+        <li><a href="https://www.youtube.com/watch?v=wfKv2qG8d_w" arget="_blank">How to Focus Intensely</a></li>
+        <li><a href="https://www.youtube.com/watch?v=e_xOfkg5FUg" arget="_blank">PRODUCTIVITY HACK #1: DEEP WORK</a></li>
+      </ul> 
+      <hr>
+    </div>
+
+  </div>
 
 </body>
 </html>
