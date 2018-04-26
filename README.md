@@ -11,6 +11,6 @@ Professional field：Finance
 
 Research：Investment、Finanacial risk
 
-Technique： Programmimng (Python) => Web crawler Information Management、 Program Trading 
+Technique： Programmimng (Python) => Web crawler、Information Management、 Program Trading 
 
 
