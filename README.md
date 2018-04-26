@@ -5,7 +5,7 @@ welcome to see my personal website
 
 # Basic information of me
 
-Education : National Kaohsiung university of science and technology (NKUST)
+Education : National Kaohsiung University Of Science And Technology (NKUST)
 
 Professional field：Finance
 
